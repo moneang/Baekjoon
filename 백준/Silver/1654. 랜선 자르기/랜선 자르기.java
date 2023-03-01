@@ -1,33 +1,32 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-	static int n;
 	static long[] arr;
-	static long m;
-
-	static long upper() {
-		ma++;
-		long min = 0;
-		long max = ma;
-		while (min < max) {
-			int count = 0;
-			long mid = min + (max - min) / 2;
-			for (int i = 0; i < arr.length; i++) {
-				count += (arr[i] / mid);
-			}
-			if (count < m)
-				max = mid;
-			else
-				min = mid+1;
-		}
-		return min;
-	}
-
 	static long ma = 0;
+	static int n;
+	static int m;
+
+	static long binary() {
+		ma++;
+		long ro = 0;
+		long hi = ma;
+		while (ro < hi) {
+			long mid = ro + ((hi - ro) / 2);
+			int num = 0;
+			for (int i = 0; i < n; i++) {
+				long im = arr[i] / mid;
+				num += im;
+			}
+			if (num >= m)
+				ro = mid + 1;
+			else
+				hi = mid;
+		}
+		return ro;
+	}
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -38,14 +37,13 @@ public class Main {
 		m = Integer.parseInt(st.nextToken());
 		arr = new long[n];
 		for (int i = 0; i < n; i++) {
-			int n1 = Integer.parseInt(br.readLine());
+			long n1 = Long.parseLong(br.readLine());
+			if (ma < n1)
+				ma = n1;
 			arr[i] = n1;
-			if (ma < arr[i])
-				ma = arr[i];
 		}
-		long res=upper();
-		sb.append(res-1);
+		long rr = binary();
+		sb.append(rr - 1);
 		System.out.println(sb);
 	}
-
 }
