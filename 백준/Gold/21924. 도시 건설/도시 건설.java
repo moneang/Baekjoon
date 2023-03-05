@@ -62,6 +62,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
+		StringBuilder sb = new StringBuilder();
 		st = new StringTokenizer(br.readLine());
 		int n = Integer.parseInt(st.nextToken());
 		int m = Integer.parseInt(st.nextToken());
@@ -100,9 +101,10 @@ public class Main {
 			}
 		}
 		if (ch == false)
-			System.out.println((rr1 - rr2));
+			sb.append((rr1 - rr2));
 		else
-			System.out.println(-1);
+			sb.append(-1);
+		System.out.println(sb);
 
 	}
 }
